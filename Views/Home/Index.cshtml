@@ -1,0 +1,50 @@
+﻿@using SneakerShop.Models.PageModels
+@model IndexPageModel
+@{
+    ViewData["Title"] = "Home Page";
+    var goods = Model.Goods;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                white: '#fff',
+                title: '#E5E5E5',
+                inner: '#514F4E',
+                red: '#FF0000',
+                popupCataloge: '#D9D9D9',
+                blue: '#0077cc'
+              }
+            }
+          },
+          variants: {
+                extend: {
+                    display: ["group-hover"],
+                },
+            },
+        }
+    </script>
+    <title>Sneakers</title>
+</head>
+<body class="pb-[389px]">
+    <div style="background-image: url('/images/indexPage-bg.jpg')" class="bg-center bg-no-repeat bg-cover h-[536px] mt-[36px]"></div>
+    @foreach(var g in goods)
+    {
+        <div class="flex flex-col gap-[99px] mt-[67px]">
+            <div class="uppercase text-[70px] leading-none text-center">Сезон 2023</div>
+            <div class="max-w-[1013px] max-h-[712px] mx-auto"><img src="@g.ImageURL" alt=""></div>
+            <div class="text-[50px] leading-none text-center">@g.Name</div>
+        </div>
+    }
+</body>
+</html>

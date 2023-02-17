@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        white: '#fff',
+                        title: '#E5E5E5',
+                        inner: '#514F4E'
+                    }
+                }
+            }
+        }
+    </script>
+    <title>Sneakers shop</title>
+</head>
+<body>
+    <div style="
+        background-image: url('/images/mainPage-bg.jpg')
+      " class="bg-center bg-no-repeat bg-cover">
+        <div class="flex flex-col justify-center  text-[48px] gap-[44px] pt-[270px] pb-[105px] leading-none items-center">
+            <div class="text-[90px] leading-none text-title"><a href="/Home/Index">SneakerShop</a></div>
+            <div class="text-white max-w-[1036px] text-center">На нашем сервисе вы обязательно найдёте для себя любимые одежду и обувь, благодаря которым сможете выделяться и стильно выглядеть</div>
+            <div class="flex flex-col gap-[50px] text-inner max-w-[513px] w-full text-center">
+                <a class="block py-[11px] px-[19px] bg-white/75 border border-white/75 rounded-[30px]" href="/Authorization/Login">Log In</a>
+                <a class="block py-[11px] px-[19px] bg-white/75 border border-white/75 rounded-[30px]" href="/Authorization/SignUp">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="~/css/global.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        white: '#fff',
+                        title: '#E5E5E5',
+                        inner: '#514F4E',
+                        registr: '#E5983C'
+                    }
+                }
+            }
+        }
+    </script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <div style="
+    background-image: url('/images/mainPage-bg.jpg')
+  " class="bg-center bg-no-repeat bg-cover pt-[43px]">
+        <a href="/Authorization/Auth" class="block text-center text-[40px] leading-none ml-auto mr-[47px] text-inner bg-white/75 max-w-[170px] py-[10px] px-[42px] border border-white/75 rounded-[30px] ">Back</a>
+        <div class="flex flex-col justify-center text-[48px] gap-[44px] mt-[170px] pb-[65px] leading-none items-center">
+            <div class="text-[90px] leading-none text-title">SneakerShop</div>
+            <form method="post" action="/Authorization/CreateAccount" class="flex flex-col gap-[51px] text-inner text-center max-w-[513px] w-full">
+                <input type="text" name="Email" placeholder="Email" class="px-[20px] py-[12px] border border-white/75 rounded-[30px] max-h-[79px]">
+                <input type="text" name="Login" placeholder="Login" class="px-[20px] py-[12px] border border-white/75 rounded-[30px] max-h-[79px]">
+                <input type="password" name="Password" placeholder="Password" class="px-[20px] py-[12px] border border-white/75 rounded-[30px] max-h-[79px]">
+                <button type="submit" class="bg-registr px-[20px] py-[12px] border border-registr rounded-[30px]">Registration</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
