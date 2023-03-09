@@ -46,7 +46,7 @@
         <div class="flex gap-[222px] items-center pt-[58px] pl-[14px] text-[30px] leading-none ">
             <div>
                 <a href="/Home/Index">
-                    <img src="images/logo.jpg" alt="">
+                    <img src="~/images/logo.jpg" alt="">
                 </a>
             </div>
             <div class="flex gap-[108px]">
@@ -57,21 +57,21 @@
                 <a href="#" class="hover:text-red hover:duration-300">Аксессуары</a>
             </div>
             <div class="flex gap-[45px]">
-                <a href="/Home/Basket"><img src="/images/icons/cart.svg" alt=""></a>
+                <a href="/Home/Basket"><img src="~/images/icons/cart.svg" alt=""></a>
                 @if (isAuth)
                 {
                     <a href="/Authorization/Auth">@userName</a>
                 }
                 else
                 {
-                    <a href="/Authorization/Auth"><img src="/images/icons/profile.svg" alt=""></a>
+                    <a href="/Authorization/Auth"><img src="~/images/icons/profile.svg" alt=""></a>
                 }
             </div>
         </div>
         <div id="searchField" class="bg-white searchContent max-w-screen w-full px-[50px] mt-[20px] hide">
             <div class="flex border-black border-b-4 py-[16px] gap-[10px] justify-between">
                 <input class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
-                <button class="w-[55px]"><img class="w-full" src="images/icons/search.svg" alt=""></button>
+                <button class="w-[55px]"><img class="w-full" src="~/images/icons/search.svg" alt=""></button>
             </div>
             <div class="min-h-[150px]"></div>
         </div>
