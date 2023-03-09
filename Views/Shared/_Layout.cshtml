@@ -5,78 +5,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SneakerShop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SneakerShop.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        white: '#fff',
+                        title: '#E5E5E5',
+                        inner: '#514F4E',
+                        red: '#FF0000',
+                        popupCataloge: '#D9D9D9',
+                    }
+                }
+            },
+            variants: {
+                extend: {
+                    display: ["group-hover"],
+                },
+            },
+        }
+    </script>
+    <title>Sneaker shop</title>
 </head>
-<body>
+<body class="pb-[50px]">
     <header>
         <div class="flex gap-[222px] items-center pt-[58px] pl-[14px] text-[30px] leading-none ">
             <div>
-                <a href="/home/index">
-                    <img src="/images/logo.jpg" alt="">
+                <a href="/Home/Index">
+                    <img src="images/logo.jpg" alt="">
                 </a>
             </div>
             <div class="flex gap-[108px]">
-                <div class="group relative">
-                    <div id="searchLink" class="hover:text-red text-blue hover:duration-300 hover:cursor-pointer">Поиск</div>
-                    <div id="searchPopup" class="absolute top-[10px] left-[-500px] bg-white px-[100px] py-[38px] mt-[33px] duration-300">
-                        <div class="flex border-black border-b-4 py-[16px] min-w-[1800px] gap-[10px] justify-between">
-                            <input type="text" placeholder="Поиск..." class="min-w-[1550px]">
-                            <button class="w-[55px]"><img class="w-full" src="/images/icons/search.svg" alt=""></button>
-                        </div>
-                        <div class="min-h-[150px]"></div>
-                    </div>
-                </div>
-                <a href="sales.html" class="hover:text-red hover:duration-300">Скидки</a>
-                <div class="group relative">
-                    <div class="hover:text-red duration-300 text-blue hover:cursor-pointer" id="CatalogLink" >Каталог</div>
-                    <div id="catalogPopup" class="absolute top-[10px]  left-[-900px] min-w-[2000px] bg-popupCataloge px-[100px] py-[38px] mt-[33px] group-hover:z-[100] duration-300">
-                        <div class="flex gap-[197px] text-[30px] leading-none">
-                            <div class="flex flex-col gap-[32px] max-w-[180px] w-full items-center">
-                                <a href="#" class="w-[171px] w-full hover:text-red">Вся Одежда</a>
-                                <a href="#" class="hover:text-red">Куртки</a>
-                                <a href="#" class="hover:text-red">Толстовки</a>
-                                <a href="#" class="hover:text-red">Штаны</a>
-                                <a href="#" class="hover:text-red">Футболки</a>
-                                <a href="#" class="hover:text-red">Шорты</a>
-                            </div>
-                            <div class="flex flex-col gap-[32px] max-w-[171px] w-full items-center">
-                                <a href="#" class="hover:text-red">Вся Обувь</a>
-                                <a href="#" class="hover:text-red">Кроссовки</a>
-                                <a href="#" class="hover:text-red">Кеды</a>
-                                <a href="#" class="hover:text-red">Сланцы</a>
-                                <a href="#" class="hover:text-red">Сапоги</a>
-                                <a href="#" class="hover:text-red">Для бега</a>
-                            </div>
-                            <div class="flex flex-col gap-[32px] max-w-[223px] w-full items-center">
-                                <a href="#" class="w-[240px] mx-auto hover:text-red">Все Аксессуары</a>
-                                <a href="#" class="hover:text-red">Сумки</a>
-                                <a href="#" class="hover:text-red">Рюкзаки</a>
-                                <a href="#" class="hover:text-red">Шапки</a>
-                                <a href="#" class="hover:text-red">Перчатки</a>
-                                <a href="#" class="hover:text-red">Носки</a>
-                            </div>
-                            <div class="flex flex-col gap-[32px] max-w-[171px] w-full items-center">
-                                <a href="#" class="w-[210px] mx-auto hover:text-red">Все Бренды</a>
-                                <a href="#" class="hover:text-red">Nike</a>
-                                <a href="#" class="hover:text-red">Adidas</a>
-                                <a href="#" class="hover:text-red">Reebok</a>
-                                <a href="#" class="hover:text-red">Puma</a>
-                                <a href="#" class="hover:text-red w-[200px] mx-auto">New Balance</a>
-                            </div>
-                            <div class="flex flex-col gap-[32px] max-w-[205px] w-full items-center hover:text-red"><a href="#" class="text-red w-[240px]">Распродажа %</a></div>
-                        </div>
-                    </div>
-                </div>
-                <a href="newproducts.html" class="text-red">Новинки</a>
+                <button onclick="dropdownSearcfield()" id="searchBtn" class="hover:text-red hover:duration-300 dropbtn">Поиск</button>
+                <a href="/Home/Sales" class="hover:text-red hover:duration-300">Скидки</a>
+                <button onclick="dropdownCatalog()" href="#" class="hover:text-red hover:duration-300">Каталог</button>
+                <a href="/Home/Newproducts" class="hover:text-red hover:duration-300">Новинки</a>
                 <a href="#" class="hover:text-red hover:duration-300">Аксессуары</a>
             </div>
             <div class="flex gap-[45px]">
-                <a href="cart.html"><img src="/images/icons/cart.svg" alt=""></a>
+                <a href="/Home/Basket"><img src="/images/icons/cart.svg" alt=""></a>
                 @if (isAuth)
                 {
                     <a href="/Authorization/Auth">@userName</a>
@@ -87,7 +68,52 @@
                 }
             </div>
         </div>
+        <div id="searchField" class="bg-white searchContent max-w-screen w-full px-[50px] mt-[20px] hide">
+            <div class="flex border-black border-b-4 py-[16px] gap-[10px] justify-between">
+                <input class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
+                <button class="w-[55px]"><img class="w-full" src="images/icons/search.svg" alt=""></button>
+            </div>
+            <div class="min-h-[150px]"></div>
+        </div>
+        <div class="bg-popupCataloge px-[100px] py-[38px] mt-[33px] hide" id="catalog">
+            <div class="flex gap-[197px] justify-center text-[30px] leading-none">
+                <div class="flex flex-col gap-[32px] max-w-[180px] w-full items-center">
+                    <a href="#" class="w-[171px] w-full hover:text-red">Вся Одежда</a>
+                    <a href="#" class="hover:text-red">Куртки</a>
+                    <a href="#" class="hover:text-red">Толстовки</a>
+                    <a href="#" class="hover:text-red">Штаны</a>
+                    <a href="#" class="hover:text-red">Футболки</a>
+                    <a href="#" class="hover:text-red">Шорты</a>
+                </div>
+                <div class="flex flex-col gap-[32px] max-w-[171px] w-full items-center">
+                    <a href="#" class="hover:text-red">Вся Обувь</a>
+                    <a href="#" class="hover:text-red">Кроссовки</a>
+                    <a href="#" class="hover:text-red">Кеды</a>
+                    <a href="#" class="hover:text-red">Сланцы</a>
+                    <a href="#" class="hover:text-red">Сапоги</a>
+                    <a href="#" class="hover:text-red">Для бега</a>
+                </div>
+                <div class="flex flex-col gap-[32px] max-w-[223px] w-full items-center">
+                    <a href="#" class="w-[240px] mx-auto hover:text-red">Все Аксессуары</a>
+                    <a href="#" class="hover:text-red">Сумки</a>
+                    <a href="#" class="hover:text-red">Рюкзаки</a>
+                    <a href="#" class="hover:text-red">Шапки</a>
+                    <a href="#" class="hover:text-red">Перчатки</a>
+                    <a href="#" class="hover:text-red">Носки</a>
+                </div>
+                <div class="flex flex-col gap-[32px] max-w-[171px] w-full items-center">
+                    <a href="#" class="w-[210px] mx-auto hover:text-red">Все Бренды</a>
+                    <a href="#" class="hover:text-red">Nike</a>
+                    <a href="#" class="hover:text-red">Adidas</a>
+                    <a href="#" class="hover:text-red">Reebok</a>
+                    <a href="#" class="hover:text-red">Puma</a>
+                    <a href="#" class="hover:text-red w-[200px] mx-auto">New Balance</a>
+                </div>
+                <div class="flex flex-col gap-[32px] max-w-[205px] w-full items-center hover:text-red"><a href="#" class="text-red w-[240px]">Распродажа %</a></div>
+            </div>
+        </div>
     </header>
+
     <div>
         <main role="main" class="pb-3">
             @RenderBody()
@@ -103,6 +129,14 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function dropdownSearcfield() {
+            document.getElementById("searchField").classList.toggle('show');
+        }
+        function dropdownCatalog() {
+            document.getElementById("catalog").classList.toggle('show');
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

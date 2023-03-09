@@ -28,13 +28,27 @@ namespace SneakerShop.Controllers
 		public IActionResult Index()
         {
 			var goods = _GoodsService.GetAll();
-			//goods.Add(new Good(1, 1, "Кроссовки абибас", 100, null, 2, "34", "Внатуре чоткие кроссы ежжы", @"https://www.meme-arsenal.com/memes/a0ec1870e03618b5abae03df59eb8e02.jpg"));
-			//goods.Add(new Good(2, 1, "Кроссовки найк", 500, 1, 0, "40", "Не чоткие кросы", @"https://i.ytimg.com/vi/DAJjonCvR6Y/maxresdefault.jpg"));
-			//
 			return View(new IndexPageModel(goods));
-        }
+		}
 
-        public IActionResult Privacy()
+		public IActionResult Sales()
+		{
+			var goods = _GoodsService.GetAll().Where(x => x.IdDiscount != null).ToList();
+			return View(new IndexPageModel(goods));
+		}
+
+		public IActionResult Newproducts()
+		{
+			var goods = _GoodsService.GetAll();
+			return View(new IndexPageModel(goods));
+		}
+
+		public IActionResult GetGoodInfo(int goodId)
+		{
+			return View(new IndexPageModel(_GoodsService.Get(goodId)));
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }
@@ -55,12 +69,6 @@ namespace SneakerShop.Controllers
 		public IActionResult GetGoodsByCategoryId(int idCategory)
 		{
 			return View(_GoodsService.GetAll().Where(x => x.IdGoodCategory == idCategory));
-		}
-
-		[HttpPost]
-		public IActionResult GetGoodsWithDiscount()
-		{
-			return View(_GoodsService.GetAll().Where(x => x.IdDiscount != null));
 		}
 
 		[HttpPost]
