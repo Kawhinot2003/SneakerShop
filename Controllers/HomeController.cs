@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NuGet.Packaging.Signing;
+﻿using Microsoft.AspNetCore.Mvc;
 using SneakerShop.Models;
 using SneakerShop.Models.PageModels;
-using SneakerShop.Services;
+using SneakerShop.Services.Interfaces;
 using System.Diagnostics;
 
 namespace SneakerShop.Controllers
@@ -11,41 +9,32 @@ namespace SneakerShop.Controllers
     public class HomeController : Controller
     {
 
-		private GoodsService _GoodsService;
-		private GoodCategoriesService _GoodCategoriesService;
-		private DiscountsService _DiscountsService;
-		private SignInManager<IdentityUser> _SignInManager;
+		private IGoodsService _GoodsService;
+		private IDiscountsService _DiscountsService;
 
-		public HomeController(GoodsService goodsService, GoodCategoriesService goodCategoriesService, 
-			DiscountsService discountsService, SignInManager<IdentityUser> signInManager)
+		public HomeController(IGoodsService goodsService, IDiscountsService discountsService)
 		{
 			_GoodsService = goodsService;
-			_GoodCategoriesService = goodCategoriesService;
 			_DiscountsService = discountsService;
-			_SignInManager = signInManager;
 		}
 
-		public IActionResult Index()
-        {
-			var goods = _GoodsService.GetAll();
+		public IActionResult Index(string? search)
+		{
+			var goods = _GoodsService.GetAllGoods().Where(x => x.Name.Contains(search ?? "")).ToList();
 			return View(new IndexPageModel(goods));
 		}
 
 		public IActionResult Sales()
 		{
-			var goods = _GoodsService.GetAll().Where(x => x.IdDiscount != null).ToList();
+			var discounts = _DiscountsService.GetAll().Select(x => x.IdGood);
+			var goods = _GoodsService.GetAllGoods().Where(x => discounts.Contains(x.Id)).ToList();
 			return View(new IndexPageModel(goods));
 		}
 
 		public IActionResult Newproducts()
 		{
-			var goods = _GoodsService.GetAll();
+			var goods = _GoodsService.GetAllGoods();
 			return View(new IndexPageModel(goods));
-		}
-
-		public IActionResult GetGoodInfo(int goodId)
-		{
-			return View(new IndexPageModel(_GoodsService.Get(goodId)));
 		}
 
 		public IActionResult Privacy()
@@ -58,24 +47,6 @@ namespace SneakerShop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-		[HttpPost]
-		public IActionResult FindGoodsByName(string goodName)
-		{
-			return View(_GoodsService.GetAll().Where(x => x.Name.Contains(goodName)));
-		}
-
-		[HttpPost]
-		public IActionResult GetGoodsByCategoryId(int idCategory)
-		{
-			return View(_GoodsService.GetAll().Where(x => x.IdGoodCategory == idCategory));
-		}
-
-		[HttpPost]
-		public IActionResult GetGoodCategories()
-		{
-			return View(_GoodCategoriesService.GetAll());
-		}
 
     }
 }

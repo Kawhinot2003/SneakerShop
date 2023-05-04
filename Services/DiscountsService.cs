@@ -1,4 +1,5 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services.Interfaces;
 
@@ -24,14 +25,14 @@ namespace SneakerShop.Services
 			return Repository.GetAll();
 		}
 
-		public Returns Add(Discount entity)
+		public (int EntityId, Returns Result) Add(Discount entity)
 		{
 			return Repository.Add(entity);
 		}
 
-		public Returns Edit(int id, Discount entity)
+		public Returns Edit(Discount entity)
 		{
-			return Repository.Edit(id, entity);
+			return Repository.Edit(entity);
 		}
 
 		public Returns Delete(int id)

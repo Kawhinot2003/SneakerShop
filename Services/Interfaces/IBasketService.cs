@@ -1,4 +1,5 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 
 namespace SneakerShop.Services.Interfaces
 {
@@ -9,15 +10,9 @@ namespace SneakerShop.Services.Interfaces
 
 		List<BasketElement> GetAll();
 
-		Returns Add(BasketElement entity);
+		(int EntityId, Returns Result) Add(BasketElement entity);
 
-		/// <summary>
-		/// Изменить объект
-		/// </summary>
-		/// <param name="id">Id изменяемого объекта</param>
-		/// <param name="entity">Изменённый объект</param>
-		/// <returns></returns>
-		Returns Edit(int id, BasketElement entity);
+		Returns Edit(BasketElement entity);
 
 		Returns Delete(int id);
 

@@ -9,7 +9,7 @@ namespace SneakerShop.Repositories.Interfaces
 
 		List<T> GetAll();
 
-		Returns Add(T entity);
+		(int EntityId, Returns Result) Add(T entity);
 
 		/// <summary>
 		/// Изменить объект
@@ -17,7 +17,7 @@ namespace SneakerShop.Repositories.Interfaces
 		/// <param name="id">Id изменяемого объекта</param>
 		/// <param name="entity">Изменённый объект</param>
 		/// <returns></returns>
-		Returns Edit(int id, T entity);
+		Returns Edit(T entity);
 
 		Returns Delete(int id);
 

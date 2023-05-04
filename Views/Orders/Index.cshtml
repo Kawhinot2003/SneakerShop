@@ -1,0 +1,34 @@
+﻿@using SneakerShop.Models.PageModels
+@model OrdersPageModel
+@{
+    var isAuth = User?.Identity?.Name != null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="flex flex-col gap-[78px]">
+        <div class="flex flex-col gap-[132px] mx-auto">
+            <div class="flex justify-center text-[70px] leading-none">Заказы</div>
+            @if (Model.Goods.Any())
+            {
+                <p>Id заказа: @Model._Order.Id, Статус заказа: @Model._Order.Status</p>
+                @foreach (var e in Model.Goods)
+                {
+                    <p>IdGood: @e.IdGood, IdSize: @e.IdSize, IdDiscount: @e.IdDiscount</p>
+                }
+            }
+            else
+            {
+                if (isAuth)
+                {
+                    <p>Список заказов пуст.</p>
+                }
+                else
+                {
+                    <p>Войдите в аккаунт для создания заказа.</p>
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -57,7 +57,7 @@
                 <a href="#" class="hover:text-red hover:duration-300">Аксессуары</a>
             </div>
             <div class="flex gap-[45px]">
-                <a href="/Home/Basket"><img src="~/images/icons/cart.svg" alt=""></a>
+                <a href="/Basket/Index"><img src="~/images/icons/cart.svg" alt=""></a>
                 @if (isAuth)
                 {
                     <a href="/Authorization/Auth">@userName</a>
@@ -70,8 +70,10 @@
         </div>
         <div id="searchField" class="bg-white searchContent max-w-screen w-full px-[50px] mt-[20px] hide">
             <div class="flex border-black border-b-4 py-[16px] gap-[10px] justify-between">
-                <input class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
-                <button class="w-[55px]"><img class="w-full" src="~/images/icons/search.svg" alt=""></button>
+                <form method="get" action="/Home/Index">
+                    <input name="search" class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
+                    <button class="w-[55px]"><img class="w-full" src="~/images/icons/search.svg" alt=""></button>
+                </form>
             </div>
             <div class="min-h-[150px]"></div>
         </div>

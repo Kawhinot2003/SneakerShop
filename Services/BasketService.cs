@@ -1,4 +1,5 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services.Interfaces;
 
@@ -24,14 +25,14 @@ namespace SneakerShop.Services
 			return Repository.GetAll();
 		}
 
-		public Returns Add(BasketElement entity)
+		public (int EntityId, Returns Result) Add(BasketElement entity)
 		{
 			return Repository.Add(entity);
 		}
 
-		public Returns Edit(int id, BasketElement entity)
+		public Returns Edit(BasketElement entity)
 		{
-			return Repository.Edit(id, entity);
+			return Repository.Edit(entity);
 		}
 
 		public Returns Delete(int id)

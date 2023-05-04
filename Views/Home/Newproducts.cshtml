@@ -1,3 +1,4 @@
+@using SneakerShop.Models.Entities;
 @using SneakerShop.Models.PageModels
 @model IndexPageModel
 @{
@@ -11,7 +12,7 @@
         <div class="flex flex-col gap-[99px] mt-[67px]">
             @foreach (Good g in goods)
             {
-                <div class="max-w-[1013px] max-h-[712px] mx-auto"><a href="/Home/GetGoodInfo/?goodId=@g.Id"><img src="@g.ImageURL" alt=""></a></div>
+                <div class="max-w-[1013px] max-h-[712px] mx-auto"><a href="/GoodInfo/Index/?goodId=@g.Id"><img src="@g.ImageURL" alt=""></a></div>
                 <div class="text-[50px] leading-none text-center">@g.Name</div>
             }
         </div>

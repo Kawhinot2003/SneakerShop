@@ -1,3 +1,4 @@
+@using SneakerShop.Models.Entities;
 @using SneakerShop.Models.PageModels
 @model IndexPageModel
 @{
@@ -13,8 +14,7 @@
             <div class="flex flex-col justify-center items-center">
                 @foreach (Good g in goods)
                 {
-                    <div class="uppercase text-saleText">Sale</div>
-                    <div><img src="@g.ImageURL" alt=""></div>
+                    <div><a href="/GoodInfo/Index/?goodId=@g.Id"><img src="@g.ImageURL" alt=""></a></div>
                     <div>@g.Name</div>
                 }
             </div>

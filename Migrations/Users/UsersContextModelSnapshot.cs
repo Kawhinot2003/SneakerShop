@@ -10,17 +10,17 @@ using SneakerShop.Domains.Contexts;
 
 namespace SneakerShop.Migrations.Users
 {
-	[DbContext(typeof(UsersContext))]
+    [DbContext(typeof(UsersContext))]
     partial class UsersContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -51,6 +51,7 @@ namespace SneakerShop.Migrations.Users
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
+                            ConcurrencyStamp = "22e315e1-4107-4339-bb96-430448b4e22f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -62,7 +63,7 @@ namespace SneakerShop.Migrations.Users
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -149,13 +150,13 @@ namespace SneakerShop.Migrations.Users
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65f27a3d-7bb3-47b2-827d-d4cb83701f61",
+                            ConcurrencyStamp = "34c17693-ec29-4183-8d94-982b77646eea",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPR9FR/1mh/WoTDRSZ6LnWaFrlCGkN2o1iTB52oPE1+O8cOEjlMAbPuRcZ2VdhhiBw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEBa4cR2dvU4Fx7zR93edNcq2FY47GrMGZzdniNbFJlf/VQx+9cpLIcTsCsjPxaDow==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -169,7 +170,7 @@ namespace SneakerShop.Migrations.Users
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");

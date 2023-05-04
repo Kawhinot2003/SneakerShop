@@ -31,7 +31,7 @@ namespace SneakerShop.Domains.Contexts
 				Email = "my@email.com",
 				NormalizedEmail = "MY@EMAIL.COM",
 				EmailConfirmed = true,
-				PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
+				PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
 				SecurityStamp = string.Empty
 			});
 

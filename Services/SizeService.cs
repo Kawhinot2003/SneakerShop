@@ -1,37 +1,38 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services.Interfaces;
 
 namespace SneakerShop.Services
 {
-	public class OrderTypesService : IOrderTypesService
+	public class SizeService : ISizeService
 	{
 
-		private readonly IDbRepository<OrderType> Repository;
+		private readonly IDbRepository<Size> Repository;
 
-		public OrderTypesService(IDbRepository<OrderType> repository)
+		public SizeService(IDbRepository<Size> repository)
 		{
 			Repository = repository;
 		}
 
-		public OrderType Get(int id)
+		public Size Get(int id)
 		{
 			return Repository.Get(id);
 		}
 
-		public List<OrderType> GetAll()
+		public List<Size> GetAll()
 		{
 			return Repository.GetAll();
 		}
 
-		public Returns Add(OrderType entity)
+		public (int EntityId, Returns Result) Add(Size entity)
 		{
 			return Repository.Add(entity);
 		}
 
-		public Returns Edit(int id, OrderType entity)
+		public Returns Edit(Size entity)
 		{
-			return Repository.Edit(id, entity);
+			return Repository.Edit(entity);
 		}
 
 		public Returns Delete(int id)

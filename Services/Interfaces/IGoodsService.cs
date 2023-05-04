@@ -1,25 +1,38 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 
 namespace SneakerShop.Services.Interfaces
 {
 	public interface IGoodsService
 	{
 
-		Good Get(int id);
+		#region Good
 
-		List<Good> GetAll();
+		Good GetGood(int id);
 
-		Returns Add(Good entity);
+		List<Good> GetAllGoods();
 
-		/// <summary>
-		/// Изменить объект
-		/// </summary>
-		/// <param name="id">Id изменяемого объекта</param>
-		/// <param name="entity">Изменённый объект</param>
-		/// <returns></returns>
-		Returns Edit(int id, Good entity);
+		(int EntityId, Returns Result) AddGood(Good entity);
 
-		Returns Delete(int id);
+		Returns EditGood(Good entity);
+
+		Returns DeleteGood(int id);
+
+		#endregion
+
+		#region GoodCategory
+
+		GoodCategory GetGoodCategory(int id);
+
+		List<GoodCategory> GetAllGoodCategories();
+
+		(int EntityId, Returns Result) AddGoodCategory(GoodCategory entity);
+
+		Returns EditGoodCategory(GoodCategory entity);
+
+		Returns DeleteGoodCategory(int id);
+
+		#endregion
 
 	}
 }

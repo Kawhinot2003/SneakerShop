@@ -1,4 +1,5 @@
 ﻿using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services.Interfaces;
 
@@ -7,37 +8,72 @@ namespace SneakerShop.Services
 	public class GoodsService : IGoodsService
 	{
 
-		private readonly IDbRepository<Good> Repository;
+		private readonly IDbRepository<Good> GoodRepository;
+		private readonly IDbRepository<GoodCategory> GoodCategoryRepository;
 
-		public GoodsService(IDbRepository<Good> repository)
+		public GoodsService(IDbRepository<Good> goodRepository, IDbRepository<GoodCategory> goodCategoryRepository)
 		{
-			Repository = repository;
+			GoodRepository = goodRepository;
+			GoodCategoryRepository = goodCategoryRepository;
 		}
 
-		public Good Get(int id)
+		#region Good
+
+		public Good GetGood(int id)
 		{
-			return Repository.Get(id);
+			return GoodRepository.Get(id);
 		}
 
-		public List<Good> GetAll()
+		public List<Good> GetAllGoods()
 		{
-			return Repository.GetAll();
+			return GoodRepository.GetAll();
 		}
 
-		public Returns Add(Good entity)
+		public (int EntityId, Returns Result) AddGood(Good entity)
 		{
-			return Repository.Add(entity);
+			return GoodRepository.Add(entity);
 		}
 
-		public Returns Edit(int id, Good entity)
+		public Returns EditGood(Good entity)
 		{
-			return Repository.Edit(id, entity);
+			return GoodRepository.Edit(entity);
 		}
 
-		public Returns Delete(int id)
+		public Returns DeleteGood(int id)
 		{
-			return Repository.Delete(id);
+			return GoodRepository.Delete(id);
 		}
+
+		#endregion
+
+		#region GoodCategory
+
+		public GoodCategory GetGoodCategory(int id)
+		{
+			return GoodCategoryRepository.Get(id);
+		}
+
+		public List<GoodCategory> GetAllGoodCategories()
+		{
+			return GoodCategoryRepository.GetAll();
+		}
+
+		public (int EntityId, Returns Result) AddGoodCategory(GoodCategory entity)
+		{
+			return GoodCategoryRepository.Add(entity);
+		}
+
+		public Returns EditGoodCategory(GoodCategory entity)
+		{
+			return GoodCategoryRepository.Edit(entity);
+		}
+
+		public Returns DeleteGoodCategory(int id)
+		{
+			return GoodCategoryRepository.Delete(id);
+		}
+
+		#endregion
 
 	}
 }

@@ -1,18 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SneakerShop.Domains.Contexts;
 using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 
 namespace SneakerShop.Repositories
 {
 	public class DbRepository<T> : IDbRepository<T> 
-		where T : class
+		where T : EntityBase
 	{
 
+		private readonly ApplicationContext Context;
 		private readonly DbSet<T> Data;
 
 		public DbRepository(ApplicationContext context)
 		{
+			Context = context;
 			Data = context.Set<T>();
 		}
 
@@ -26,29 +29,25 @@ namespace SneakerShop.Repositories
 			return Data.ToList();
 		}
 
-		public Returns Add(T entity)
+		public (int EntityId, Returns Result) Add(T entity)
 		{
 			if (entity == null || Data.Contains(entity))
-				return new Returns(false, "Объект пуст или данный экземпляр уже сущетсвует в БД");
+				return (-1, new Returns(false, "Объект пуст или данный экземпляр уже сущетсвует в БД"));
 
 			Data.Add(entity);
+			Context.SaveChanges();
 
-			return new Returns(true);
+			return (entity.Id, new Returns(true));
 		}
 
-		public Returns Edit(int id, T entity)
+		public Returns Edit(T entity)
 		{
 			if (entity == null)
 				return new Returns(false, "Объект пуст");
-			if (Data.Find(id) == null)
-				return new Returns(false, "Объект с заданным Id не найден");
-			if (Data.Contains(entity))
-				return new Returns(false, "Данный экземпляр уже сущетсвует в БД");
 
-			// мб есть более лучший вариант реализации операции изменения
-			Data.Remove(Data.Find(id));
-			Data.Add(entity);
+			Context.Entry(entity).State = EntityState.Modified;
 			Data.Update(entity);
+			Context.SaveChanges();
 
 			return new Returns(true);
 		}
@@ -58,7 +57,9 @@ namespace SneakerShop.Repositories
 			if (Data.Find(id) == null)
 				return new Returns(false, "Объект с заданным Id не найден");
 
+			Context.Entry(Data.Find(id)).State = EntityState.Deleted;
 			Data.Remove(Data.Find(id));
+			Context.SaveChanges();
 
 			return new Returns(true);
 		}

@@ -1,0 +1,57 @@
+﻿@using SneakerShop.Models.PageModels
+@model BasketPageModel
+@{
+    var isAuth = User?.Identity?.Name != null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="flex flex-col gap-[78px]">
+        <div class="flex flex-col gap-[132px] mx-auto">
+            <div class="flex justify-center text-[70px] leading-none">Корзина</div>
+            @if (Model.BasketElements.Any())
+            {
+                @foreach (var e in Model.BasketElements)
+                {
+                    <div class="flex flex-col gap-[190px]">
+                        <div class="flex gap-[165px] items-center">
+                            <div class="max-w-[580px]">
+                                <img class="w-full" src="@e.good.ImageURL" alt="">
+                            </div>
+                            <div class="flex flex-col gap-[140px] text-[40px] leading-none">
+                                <div class="flex flex-col gap-[65px]">
+                                    <div class="text-[50px] leading-none">@e.good.Name</div>
+                                    <div>Размер: @e.size</div>
+                                </div>
+                                <div class="flex gap-[46px]">
+                                    <div class="py-[13px] px-[88px] border border-black rounded-[15px]">@e.good.Price</div>
+                                    <div class="flex gap-[34px] items-center px-[34px] py-[13px] border border-black rounded-[15px]">
+                                        <a href="/Basket/ChangeGoodCount/?goodId=@e.good.Id&operationType=0">-</a>
+                                        <div>@e.count</div>
+                                        <a href="/Basket/ChangeGoodCount/?goodId=@e.good.Id&operationType=1">+</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border border-[#808080] w-full"></div>
+                    </div>
+                }
+            }
+            else
+            {
+                if (isAuth)
+                {
+                    <p>Корзина пустая.</p>
+                }
+                else
+                {
+                    <p>Войдите в аккаунт для заполнения корзины.</p>
+                }
+            }
+        </div>
+    </div>
+    <div class="flex justify-center text-[45px] mt-[250px] pb-[100px]">
+        <a href="/Basket/MakeOrder" class="uppercase border px-[122px] py-[33px] max-w-[700px] border border-black rounded-[15px]">Оформить заказ</a>
+    </div>
+</body>
+</html>

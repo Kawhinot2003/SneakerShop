@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SneakerShop.Domains.Contexts;
-using SneakerShop.Models;
+using SneakerShop.Models.Entities;
 using SneakerShop.Repositories;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services;
+using SneakerShop.Services.Interfaces;
 
 namespace SneakerShop
 {
@@ -16,13 +17,15 @@ namespace SneakerShop
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+			var connString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 			builder.Services.AddDbContext<ApplicationContext>(options =>
-				options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+				options.UseNpgsql(connString,
+				options => options.SetPostgresVersion(new Version(9, 6, 24))));
 			builder.Services.AddDbContext<UsersContext>(options =>
-				options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+				options.UseNpgsql(connString,
+				options => options.SetPostgresVersion(new Version(9, 6, 24))));
 
 			builder.Services.AddIdentity<IdentityUser, IdentityRole>(opts =>
 			{
@@ -54,13 +57,14 @@ namespace SneakerShop
 			builder.Services.AddScoped<IDbRepository<Good>, DbRepository<Good>>();
 			builder.Services.AddScoped<IDbRepository<Order>, DbRepository<Order>>();
 			builder.Services.AddScoped<IDbRepository<OrderType>, DbRepository<OrderType>>();
+			builder.Services.AddScoped<IDbRepository<OrderedGood>, DbRepository<OrderedGood>>();
+			builder.Services.AddScoped<IDbRepository<Size>, DbRepository<Size>>();
 
-			builder.Services.AddTransient<BasketService>();
-			builder.Services.AddTransient<DiscountsService>();
-			builder.Services.AddTransient<GoodCategoriesService>();
-			builder.Services.AddTransient<GoodsService>();
-			builder.Services.AddTransient<OrdersService>();
-			builder.Services.AddTransient<OrderTypesService>();
+			builder.Services.AddTransient<IBasketService, BasketService>();
+			builder.Services.AddTransient<IDiscountsService, DiscountsService>();
+			builder.Services.AddTransient<IGoodsService, GoodsService>();
+			builder.Services.AddTransient<IOrdersService, OrdersService>();
+			builder.Services.AddTransient<ISizeService, SizeService>();
 
 			var app = builder.Build();
 
