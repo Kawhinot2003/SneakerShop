@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SneakerShop.Models.Entities;
 using SneakerShop.Models.PageModels;
 using SneakerShop.Services.Interfaces;
 
@@ -23,7 +24,7 @@ namespace SneakerShop.Controllers
 		public async Task<IActionResult> Index()
 		{
 			if (User.Identity.Name == null)
-				return View();
+				return View(new OrdersPageModel(null, new List<OrderedGood>()));
 
 			var user = await _UserManager.FindByNameAsync(User.Identity.Name);
 			var userId = user.Id;

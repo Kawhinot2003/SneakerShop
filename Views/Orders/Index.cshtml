@@ -8,24 +8,24 @@
 <body>
     <div class="flex flex-col gap-[78px]">
         <div class="flex flex-col gap-[132px] mx-auto">
-            <div class="flex justify-center text-[70px] leading-none">Заказы</div>
+            <div class="flex justify-center text-[70px] pt-[100px] leading-none">Заказы</div>
             @if (Model.Goods.Any())
             {
-                <p>Id заказа: @Model._Order.Id, Статус заказа: @Model._Order.Status</p>
+                <p class="text-[30px] leading-none text-center">Id заказа: @Model._Order.Id, Статус заказа: @Model._Order.Status</p>
                 @foreach (var e in Model.Goods)
                 {
-                    <p>IdGood: @e.IdGood, IdSize: @e.IdSize, IdDiscount: @e.IdDiscount</p>
+                    <p class="text-[30px] leading-none text-center">IdGood: @e.IdGood, IdSize: @e.IdSize, IdDiscount: @e.IdDiscount</p>
                 }
             }
             else
             {
                 if (isAuth)
                 {
-                    <p>Список заказов пуст.</p>
+                    <p class="text-[30px] leading-none text-center">Список заказов пуст.</p>
                 }
                 else
                 {
-                    <p>Войдите в аккаунт для создания заказа.</p>
+                    <p class="text-[30px] leading-none text-center">Войдите в аккаунт для создания заказа.</p>
                 }
             }
         </div>
