@@ -109,6 +109,9 @@ namespace SneakerShop.Migrations
                     b.Property<int>("IdGoodCategory")
                         .HasColumnType("integer");
 
+                    b.Property<int>("IdManufacturer")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("text");
@@ -144,6 +147,27 @@ namespace SneakerShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GoodCategories");
+                });
+
+            modelBuilder.Entity("SneakerShop.Models.Entities.Manufacturer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Manufacturers");
                 });
 
             modelBuilder.Entity("SneakerShop.Models.Entities.Order", b =>

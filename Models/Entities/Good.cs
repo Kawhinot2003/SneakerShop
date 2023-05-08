@@ -8,6 +8,8 @@
 
 		public int IdGoodCategory { get; set; }
 
+		public int IdManufacturer { get; set; }
+
 		public string Name { get; set; }
 
 		public decimal Price { get; set; }
@@ -21,9 +23,10 @@
 
 		}
 
-		public Good(int idGoodCategory, string name, decimal price, string description, string imageURL)
+		public Good(int idGoodCategory, int idManufacturer, string name, decimal price, string description, string imageURL)
 		{
 			IdGoodCategory = idGoodCategory;
+			IdManufacturer = idManufacturer;
 			Name = name;
 			Price = price;
 			Description = description;

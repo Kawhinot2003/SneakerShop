@@ -18,9 +18,9 @@ namespace SneakerShop.Controllers
 			_DiscountsService = discountsService;
 		}
 
-		public IActionResult Index(string? search)
+		public IActionResult Index(int? searchType, string? searchParam)
 		{
-			var goods = _GoodsService.GetAllGoods().Where(x => x.Name.Contains(search ?? "")).ToList();
+			var goods = _GoodsService.SearchGoods(searchType, searchParam);
 			return View(new IndexPageModel(goods));
 		}
 

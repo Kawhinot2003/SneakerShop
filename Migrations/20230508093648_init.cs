@@ -76,6 +76,7 @@ namespace SneakerShop.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     IdGoodCategory = table.Column<int>(type: "integer", nullable: false),
+                    IdManufacturer = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
@@ -84,6 +85,20 @@ namespace SneakerShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Goods", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Manufacturers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manufacturers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,6 +177,9 @@ namespace SneakerShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "Goods");
+
+            migrationBuilder.DropTable(
+                name: "Manufacturers");
 
             migrationBuilder.DropTable(
                 name: "OrderedGoods");

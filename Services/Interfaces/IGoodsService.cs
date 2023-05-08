@@ -34,5 +34,7 @@ namespace SneakerShop.Services.Interfaces
 
 		#endregion
 
+		List<Good> SearchGoods(int? searchType, string? searchParam);
+
 	}
 }

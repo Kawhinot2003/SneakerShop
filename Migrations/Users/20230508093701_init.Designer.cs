@@ -12,7 +12,7 @@ using SneakerShop.Domains.Contexts;
 namespace SneakerShop.Migrations.Users
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20230504052556_init")]
+    [Migration("20230508093701_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace SneakerShop.Migrations.Users
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "22e315e1-4107-4339-bb96-430448b4e22f",
+                            ConcurrencyStamp = "70f6ff0a-8fa8-4972-931f-7df0d10b60b9",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -152,13 +152,13 @@ namespace SneakerShop.Migrations.Users
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "34c17693-ec29-4183-8d94-982b77646eea",
+                            ConcurrencyStamp = "b3963f2e-6e53-44c8-8336-c62a8648a8c9",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEBa4cR2dvU4Fx7zR93edNcq2FY47GrMGZzdniNbFJlf/VQx+9cpLIcTsCsjPxaDow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN+m2uBTk4mvoO1ZliAjyruxRchMI98ZSmtU2kMTbkMIaOfnNhmhikRQ2OvygvpTcg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

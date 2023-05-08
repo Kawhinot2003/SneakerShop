@@ -71,8 +71,9 @@
         </div>
         <div id="searchField" class="bg-white searchContent max-w-screen w-full px-[50px] mt-[20px] hide">
             <div class="flex border-black border-b-4 py-[16px] gap-[10px] justify-between">
-                <form method="get" action="/Home/Index">
-                    <input name="search" class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
+                <form method="get" asp-controller="Home" asp-action="Index" asp-route-searchType="1">
+                    <input name="searchParam" class="text-[30px] leading-none max-w-[95%] w-full" type="text" placeholder="Поиск...">
+                    <input name="searchType" class="text-[30px] leading-none max-w-[95%] w-full" type="text" hidden="hidden" value="1">
                     <button class="w-[55px]"><img class="w-full" src="~/images/icons/search.svg" alt=""></button>
                 </form>
             </div>
@@ -106,11 +107,11 @@
                 </div>
                 <div class="flex flex-col gap-[32px] max-w-[171px] w-full items-center">
                     <a href="#" class="w-[210px] mx-auto hover:text-red">Все Бренды</a>
-                    <a href="#" class="hover:text-red">Nike</a>
-                    <a href="#" class="hover:text-red">Adidas</a>
-                    <a href="#" class="hover:text-red">Reebok</a>
-                    <a href="#" class="hover:text-red">Puma</a>
-                    <a href="#" class="hover:text-red w-[200px] mx-auto">New Balance</a>
+                    <a href="/Home/Index/?searchType=2&searchParam=0" class="hover:text-red">Nike</a>
+                    <a href="/Home/Index/?searchType=2&searchParam=1" class="hover:text-red">Adidas</a>
+                    <a href="/Home/Index/?searchType=2&searchParam=2" class="hover:text-red">Reebok</a>
+                    <a href="/Home/Index/?searchType=2&searchParam=3" class="hover:text-red">Puma</a>
+                    <a href="/Home/Index/?searchType=2&searchParam=4" class="hover:text-red w-[200px] mx-auto">New Balance</a>
                 </div>
                 <div class="flex flex-col gap-[32px] max-w-[205px] w-full items-center hover:text-red"><a href="#" class="text-red w-[240px]">Распродажа %</a></div>
             </div>

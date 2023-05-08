@@ -55,6 +55,7 @@ namespace SneakerShop
 			builder.Services.AddScoped<IDbRepository<Discount>, DbRepository<Discount>>();
 			builder.Services.AddScoped<IDbRepository<GoodCategory>, DbRepository<GoodCategory>>();
 			builder.Services.AddScoped<IDbRepository<Good>, DbRepository<Good>>();
+			builder.Services.AddScoped<IDbRepository<Manufacturer>, DbRepository<Manufacturer>>();
 			builder.Services.AddScoped<IDbRepository<Order>, DbRepository<Order>>();
 			builder.Services.AddScoped<IDbRepository<OrderType>, DbRepository<OrderType>>();
 			builder.Services.AddScoped<IDbRepository<OrderedGood>, DbRepository<OrderedGood>>();

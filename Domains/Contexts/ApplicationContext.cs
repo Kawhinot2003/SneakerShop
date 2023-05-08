@@ -16,6 +16,8 @@ namespace SneakerShop.Domains.Contexts
 
 		public DbSet<Good> Goods { get; set; }
 
+		public DbSet<Manufacturer> Manufacturers { get; set; }
+
 		public DbSet<GoodCategory> GoodCategories { get; set; }
 
 		public DbSet<Size> Sizes { get; set; }

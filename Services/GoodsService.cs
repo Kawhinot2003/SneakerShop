@@ -1,4 +1,5 @@
-﻿using SneakerShop.Models;
+﻿using SneakerShop.Enums;
+using SneakerShop.Models;
 using SneakerShop.Models.Entities;
 using SneakerShop.Repositories.Interfaces;
 using SneakerShop.Services.Interfaces;
@@ -10,11 +11,14 @@ namespace SneakerShop.Services
 
 		private readonly IDbRepository<Good> GoodRepository;
 		private readonly IDbRepository<GoodCategory> GoodCategoryRepository;
+		private readonly IDbRepository<Manufacturer> ManufacturerRepository;
 
-		public GoodsService(IDbRepository<Good> goodRepository, IDbRepository<GoodCategory> goodCategoryRepository)
+		public GoodsService(IDbRepository<Good> goodRepository, IDbRepository<GoodCategory> goodCategoryRepository, 
+			IDbRepository<Manufacturer> manufacturerRepository)
 		{
 			GoodRepository = goodRepository;
 			GoodCategoryRepository = goodCategoryRepository;
+			ManufacturerRepository = manufacturerRepository;
 		}
 
 		#region Good
@@ -74,6 +78,57 @@ namespace SneakerShop.Services
 		}
 
 		#endregion
+
+		#region Manufacturer
+
+		public Manufacturer GetManufacturer(int id)
+		{
+			return ManufacturerRepository.Get(id);
+		}
+
+		public List<Manufacturer> GetAllManufacturers()
+		{
+			return ManufacturerRepository.GetAll();
+		}
+
+		public (int EntityId, Returns Result) AddManufacturer(Manufacturer entity)
+		{
+			return ManufacturerRepository.Add(entity);
+		}
+
+		public Returns EditManufacturer(Manufacturer entity)
+		{
+			return ManufacturerRepository.Edit(entity);
+		}
+
+		public Returns DeleteManufacturer(int id)
+		{
+			return ManufacturerRepository.Delete(id);
+		}
+
+		#endregion
+
+		public List<Good> SearchGoods(int? searchType, string? searchParam)
+		{
+			searchType = !searchType.HasValue ? searchType = 0 : searchType;
+			var type = (SearchTypes)searchType;
+			var result = new List<Good>();
+
+			switch (type)
+			{
+				case SearchTypes.GoodName:
+					result = GetAllGoods().Where(x => x.Name.Contains(searchParam)).ToList();
+					break;
+				case SearchTypes.IdManufacturer: 
+					result = GetAllGoods().Where(x => x.IdManufacturer == Convert.ToInt32(searchParam)).ToList();
+					break;
+				case SearchTypes.IdGoodCategory:
+					result = GetAllGoods().Where(x => x.IdGoodCategory == Convert.ToInt32(searchParam)).ToList();
+					break;
+			}
+
+			return result;
+		}
 
 	}
 }
