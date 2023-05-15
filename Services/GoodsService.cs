@@ -125,6 +125,8 @@ namespace SneakerShop.Services
 				case SearchTypes.IdGoodCategory:
 					result = GetAllGoods().Where(x => x.IdGoodCategory == Convert.ToInt32(searchParam)).ToList();
 					break;
+				default: result = GetAllGoods();
+					break;
 			}
 
 			return result;
