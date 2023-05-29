@@ -28,8 +28,8 @@ namespace SneakerShop.Controllers
 
 			var user = await _UserManager.FindByNameAsync(User.Identity.Name);
 			var userId = user.Id;
-			var order = _OrdersService.GetAllOrders().First(x => x.IdUser == userId);
-			var goods = _OrdersService.GetAllOrderedGoods().Where(x => x.IdOrder == order.Id).ToList();
+			var order = _OrdersService.GetAllOrders().FirstOrDefault(x => x.IdUser == userId);
+			var goods = _OrdersService.GetAllOrderedGoods().Where(x => x.IdOrder == (order?.Id ?? -1)).ToList();
 
 			return View(new OrdersPageModel(order, goods));
 		}

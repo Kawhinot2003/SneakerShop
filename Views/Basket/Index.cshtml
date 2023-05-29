@@ -5,6 +5,18 @@
 }
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <style>
+        .modal-active {
+            position: fixed !important;
+            top: 0px !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: .3s !important;
+            overflow: hidden;
+        }
+    </style>
+</head>
 <body>
     <div class="flex flex-col gap-[78px]">
         <div class="flex flex-col gap-[132px] mx-auto">
@@ -36,7 +48,7 @@
                         <div class="border border-[#808080] w-full"></div>
                     </div>
                 }
-                <div class="flex justify-center text-[45px] mt-[250px] pb-[100px]">
+                <div id="openModalBtn" class="flex  justify-center text-[45px] mt-[250px] pb-[100px]">
                     <a href="/Basket/MakeOrder" class="uppercase border px-[122px] py-[33px] max-w-[700px] border border-black rounded-[15px]">Оформить заказ</a>
                 </div>
             }
@@ -51,10 +63,37 @@
                 }
                 else
                 {
-                    <div class="text-[30px] leading-none text-center">Войдите в аккаунт для заполнения корзины.</div>
+                    <div id="modal" class="absolute invisible top-[-1000px] z-1000 opacity-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,0.5)] flex justify-center items-center duration-300 ">
+                        <div class="bg-[#fff] w-[935px] flex flex-col gap-[48px] pb-[67px]">
+                            <div class="flex justify-between items-center px-7 py-6 border-b border-[#000]">
+                                <div class="text-[40px] text-center">Вы не авторизованы</div>
+                                <button id="closeModalBtn" class="w-[40px] h-[40px]"><img class="w-full" src="~/images/icons/close-modal.svg" alt="#"></button>
+                            </div>
+                            <div class="flex flex-col items-center gap-[71px] mt-[71px] text-[30px] leading-none">
+                                <div class="text-center text-[32px] max-w-[633px] leading-none">Для оформления заказа вам необходимо пройти регистрацию и авторизоваться</div>
+                                <button class="bg-[#000] text-[#fff] w-[719px] flex justify-center items-center py-6 px-[214px]">Зарегистрироваться</button>
+                            </div>
+                        </div>
+                    </div>
                 }
             }
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let openModalBtn = document.getElementById('openModalBtn');
+            let modal = document.getElementById('modal');
+            let closeModalBtn = document.getElementById('closeModalBtn');
+
+            openModalBtn.onclick = function (e) {
+                e.preventDefault();
+                modal.classList.add('modal-active');
+            }
+            closeModalBtn.onclick = function (e) {
+                e.preventDefault();
+                modal.classList.remove('modal-active');
+            }
+        })
+    </script>
 </body>
 </html>

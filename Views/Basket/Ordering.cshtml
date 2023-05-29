@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal-active {
+            position: fixed !important;
+            top: 0px !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: .3s !important;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex flex-col mt-[80px] gap-[112px] mx-[122px] items-center">
+        <div class="text-center text-[60px]">Заказ <button id="openModalBtn" type="button" class="text-base text-[#3c3c3c]">проверить модалку</button></div>
+        <form action="#">
+            <div class="flex gap-[240px] text-[30px] leading-none">
+                <div class="flex flex-col gap-[65px] w-[719px]">
+                    <input type="text" placeholder="Имя" class="border border-[#000] px-8 py-6">
+                    <input type="text" placeholder="Фамилия (необязательно)" class="border border-[#000] px-8 py-6">
+                    <input type="number" placeholder="Телефон" class="border border-[#000] px-8 py-6">
+                    <input type="email" placeholder="Email" class="border border-[#000] px-8 py-6">
+                </div>
+                <div class="flex flex-col justify-between">
+                    <textarea cols="30" rows="10" placeholder="Комментарий к заказу (необязательно)" class="min-h-[170px] border border-[#000] pt-5 px-6"></textarea>
+                    <button type="submit" class="bg-[#000] text-[#fff] flex justify-center items-center py-6 px-[242px]">Оформить заказ</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="modal" class="absolute invisible top-[-1000px] z-1000 opacity-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,0.5)] flex justify-center items-center duration-300 ">
+        <div class="bg-[#fff] w-[935px] flex flex-col gap-[48px] pb-[55px]">
+            <div class="flex justify-between items-center px-7 py-6 border-b border-[#000]">
+                <div class="text-[40px]">Оформление заказа</div>
+                <button id="closeModalBtn" class="w-[40px] h-[40px]"><img class="w-full" src="./assets/images/icons/close-modal.svg" alt="#"></button>
+            </div>
+            <div class="flex flex-col gap-[43px] text-[24px] leading-none">
+                <div class="text-center text-[32px] leading-none">Благодарим Вас за заказ!</div>
+                <div class="pl-9">
+                    <div>Наш менеджер свяжется с вами в ближайшее время. </div>
+                    <div class="mt-[43px]">Если у вас остались вопросы, вы можете связаться с нами в любое удобное время.</div>
+                </div>
+                <div class="text-center"><span class="py-4 px-10 border border-[#000]">Наш телефон: +7 (917) 904-09-77</span></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let openModalBtn = document.getElementById('openModalBtn');
+            let modal = document.getElementById('modal');
+            let closeModalBtn = document.getElementById('closeModalBtn');
+
+            openModalBtn.onclick = function (e) {
+                e.preventDefault();
+                modal.classList.add('modal-active');
+            }
+            closeModalBtn.onclick = function (e) {
+                e.preventDefault();
+                modal.classList.remove('modal-active');
+            }
+        })
+    </script>
+</body>
+</html>
