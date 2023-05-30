@@ -9,25 +9,26 @@
     <div class="flex flex-col gap-[78px]">
         <div class="flex flex-col gap-[132px] mx-auto">
             <div class="flex justify-center text-[70px] pt-[100px] leading-none">Заказы</div>
-            @if (Model.Goods.Any())
+            @if (Model.UserOrders.Any())
             {
-                <div class="flex gap-[166px] mt-[100px]">
-                    <div class="max-w-[600px] max-h-[260px] overflow-h">
-                        <img class="w-full h-full" src="~/images/blazer-mid.jpg" alt="">
-                    </div>
-                    <div class="flex flex-col gap-[55px]">
-                        <div class="text-[30px] leading-none text-center">Название: @Model._Order.Id</div>
-                        <div>
-                            @foreach (var e in Model.Goods)
-                            {
-                                <div class="text-[30px] leading-none text-center">Размер: @e.IdSize</div>
-                            }
+                @foreach (var order in Model.UserOrders)
+                {
+                    <p>Заказ: @order.Key.Id, Статус: @order.Key.Status</p>
+                    @foreach(var good in order.Value)
+                    {
+                        <div class="flex gap-[166px] mt-[100px]">
+                            <div class="max-w-[600px] max-h-[260px] overflow-h">
+                                <img class="w-full h-full" src="@good._Good.ImageURL" alt="">
+                            </div>
+                            <div class="flex flex-col gap-[55px]">
+                                <div class="text-[30px] leading-none text-center">Название: @good._Good.Name</div>
+                                <div class="text-[30px] leading-none text-center">Размер: @good.SizeName</div>
+                                <div class="text-[30px] leading-none text-center">Количество: @good.Count</div>
+                            </div>
                         </div>
-                        <div class="text-[30px] leading-none text-center">
-                            Статус: @Model._Order.Status
-                        </div>
-                    </div>
-                </div>
+                    }
+                    <hr/>
+                }
             }
             else
             {
