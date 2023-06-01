@@ -125,6 +125,10 @@ namespace SneakerShop.Services
 				case SearchTypes.IdGoodCategory:
 					result = GetAllGoods().Where(x => x.IdGoodCategory == Convert.ToInt32(searchParam)).ToList();
 					break;
+				case SearchTypes.AccessoriesOnly:
+					var accessories = new[] { 7, 10, 11, 12 };
+					result = GetAllGoods().Where(x => accessories.Contains(x.IdGoodCategory)).ToList();
+					break;
 				default: result = GetAllGoods();
 					break;
 			}

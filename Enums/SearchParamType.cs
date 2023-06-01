@@ -8,6 +8,7 @@
 		None = 0,
 		GoodName = 1,
 		IdManufacturer = 2,
-		IdGoodCategory = 3
+		IdGoodCategory = 3,
+		AccessoriesOnly = 4
 	}
 }
