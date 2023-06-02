@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging.Signing;
 using SneakerShop.Models.Entities;
 using SneakerShop.Models.PageModels;
 using SneakerShop.Services.Interfaces;
@@ -42,6 +43,22 @@ namespace SneakerShop.Controllers
 				.ToDictionary(x => orders.First(o => o.Id == x.Key), x => x.ToList());
 
 			return View(new OrdersPageModel(goods));
+		}
+
+		public async Task<IActionResult> DeleteOrderedGood(int good_id, int order_id)
+		{
+			var orderedGood = _OrdersService.GetAllOrderedGoods()
+				.FirstOrDefault(x => x.IdGood == good_id && x.IdOrder == order_id);
+			var order = _OrdersService.GetOrder(order_id);
+
+			_OrdersService.DeleteOrderedGood(orderedGood.Id);
+
+			var isAnyOrderedGoodsInOrder = _OrdersService.GetAllOrderedGoods().Any(x => x.IdOrder == order.Id);
+
+			if (!isAnyOrderedGoodsInOrder)
+				_OrdersService.DeleteOrder(order.Id);
+
+			return RedirectToAction("Index", "Orders");
 		}
 
 	}

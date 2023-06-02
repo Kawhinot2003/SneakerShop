@@ -85,5 +85,11 @@ namespace SneakerShop.Controllers
 			return RedirectToAction("SignUp", "Authorization");
 		}
 
+		public async Task<IActionResult> ExitFromAccount()
+		{
+			await _SignInManager.SignOutAsync();
+			return RedirectToAction("Index", "Home");
+		}
+
 	}
 }

@@ -24,6 +24,7 @@
                                 <div class="leading-none text-center">Размер: @good.SizeName</div>
                                 <div class="leading-none text-center">Количество: @good.Count</div>
                                 <div class="leading-none text-center">Статус: @order.Key.Status</div>
+                                <div class="leading-none text-center"><a href="/Orders/DeleteOrderedGood/?good_id=@good.IdGood&order_id=@order.Key.Id">Удалить товар из заказа</a></div>
                             </div>
                         </div>
                     }
