@@ -19,12 +19,12 @@
                             <div class="max-w-[600px] max-h-[500px] overflow-h">
                                 <img class="w-full h-full" src="@good._Good.ImageURL" alt="">
                             </div>
-                            <div class="flex flex-col gap-[55px] text-[40px]">
-                                <div class="text-[45px] leading-none text-center">@good._Good.Name</div>
-                                <div class="leading-none text-center">Размер: @good.SizeName</div>
-                                <div class="leading-none text-center">Количество: @good.Count</div>
-                                <div class="leading-none text-center">Статус: @order.Key.Status</div>
-                                <div class="leading-none text-center"><a href="/Orders/DeleteOrderedGood/?good_id=@good.IdGood&order_id=@order.Key.Id">Удалить товар из заказа</a></div>
+                            <div class="flex flex-col gap-[55px] text-[40px] leading-none">
+                                <div class="text-[45px]">@good._Good.Name</div>
+                                <div class="">Размер: @good.SizeName</div>
+                                <div class="">Количество: @good.Count</div>
+                                <div class="">Статус: @order.Key.Status</div>
+                                <div class="flex items-center justify-center border border-black py-4 px-3 rounded-3xl max-w-[550px] mx-auto"><a href="/Orders/DeleteOrderedGood/?good_id=@good.IdGood&order_id=@order.Key.Id">Удалить товар из заказа</a></div>
                             </div>
                         </div>
                     }
@@ -35,7 +35,7 @@
             {
                 if (isAuth)
                 {
-                    <div class="flex flex-col gap-2.5 mt-[132px]">
+                    <div class="flex flex-col items-center gap-2.5 mt-[132px]">
                         <div class="max-w-[200px]">
                             <img class="w-full" src="~/images/icons/emptyOrder.svg">
                         </div>
