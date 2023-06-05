@@ -81,6 +81,18 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Goods = _GoodsService.GetAllGoods();
 			return View(pageModel);
 		}
+		public IActionResult AddGood()
+		{
+			return View();
+		}
+		public IActionResult DeleteGood()
+		{
+			return View();
+		}
+		public IActionResult EditGood()
+		{
+			return View();
+		}
 
 		#endregion
 
