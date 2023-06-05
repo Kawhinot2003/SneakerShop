@@ -8,36 +8,63 @@ namespace SneakerShop.Services
 	public class DiscountsService : IDiscountsService
 	{
 
-		private readonly IDbRepository<Discount> Repository;
+		private readonly IDbRepository<Discount> DiscountRepository;
+		private readonly IDbRepository<DiscountType> DiscountTypeRepository;
 
-		public DiscountsService(IDbRepository<Discount> repository)
+		public DiscountsService(IDbRepository<DiscountType> discountTypeRepository, IDbRepository<Discount> discountRepository)
 		{
-			Repository = repository;
+			DiscountTypeRepository = discountTypeRepository;
+			DiscountRepository = discountRepository;
 		}
 
-		public Discount Get(int id)
+		public Discount GetDiscount(int id)
 		{
-			return Repository.Get(id);
+			return DiscountRepository.Get(id);
 		}
 
-		public List<Discount> GetAll()
+		public List<Discount> GetAllDiscounts()
 		{
-			return Repository.GetAll();
+			return DiscountRepository.GetAll();
 		}
 
-		public (int EntityId, Returns Result) Add(Discount entity)
+		public (int EntityId, Returns Result) AddDiscount(Discount entity)
 		{
-			return Repository.Add(entity);
+			return DiscountRepository.Add(entity);
 		}
 
-		public Returns Edit(Discount entity)
+		public Returns EditDiscount(Discount entity)
 		{
-			return Repository.Edit(entity);
+			return DiscountRepository.Edit(entity);
 		}
 
-		public Returns Delete(int id)
+		public Returns DeleteDiscount(int id)
 		{
-			return Repository.Delete(id);
+			return DiscountRepository.Delete(id);
+		}
+
+		public DiscountType GetDiscountType(int id)
+		{
+			return DiscountTypeRepository.Get(id);
+		}
+
+		public List<DiscountType> GetAllDiscountTypes()
+		{
+			return DiscountTypeRepository.GetAll();
+		}
+
+		public (int EntityId, Returns Result) AddDiscountType(DiscountType entity)
+		{
+			return DiscountTypeRepository.Add(entity);
+		}
+
+		public Returns EditDiscountType(DiscountType entity)
+		{
+			return DiscountTypeRepository.Edit(entity);
+		}
+
+		public Returns DeleteDiscountType(int id)
+		{
+			return DiscountTypeRepository.Delete(id);
 		}
 
 	}

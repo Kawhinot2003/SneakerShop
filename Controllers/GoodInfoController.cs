@@ -39,7 +39,7 @@ namespace SneakerShop.Controllers
 
 			var user = await _UserManager.FindByNameAsync(User.Identity.Name);
 			var userId = user.Id;
-			var discountId = _DiscountsService.GetAll().FirstOrDefault(x => x.IdGood == goodId)?.Id;
+			var discountId = _DiscountsService.GetAllDiscounts().FirstOrDefault(x => x.IdGood == goodId)?.Id;
 			_BasketService.Add(new BasketElement(goodId, choosedSizeId, userId, discountId, 1));
 
 			return RedirectToAction("Index", "Basket");

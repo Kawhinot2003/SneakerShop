@@ -34,6 +34,20 @@ namespace SneakerShop.Services.Interfaces
 
 		#endregion
 
+		#region Manufacturer
+
+		Manufacturer GetManufacturer(int id);
+
+		List<Manufacturer> GetAllManufacturers();
+
+		(int EntityId, Returns Result) AddManufacturer(Manufacturer entity);
+
+		Returns EditManufacturer(Manufacturer entity);
+
+		Returns DeleteManufacturer(int id);
+
+		#endregion
+
 		List<Good> SearchGoods(int? searchType, string? searchParam);
 
 	}

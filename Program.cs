@@ -41,7 +41,7 @@ namespace SneakerShop
 			{
 				options.Cookie.Name = "myShopAuth";
 				options.Cookie.HttpOnly = true;
-				options.LoginPath = "/account/login";
+				options.LoginPath = "/Authorization/Login";
 				options.AccessDeniedPath = "/account/accessdenied";
 				options.SlidingExpiration = true;
 			});
@@ -52,6 +52,7 @@ namespace SneakerShop
 			});
 
 			builder.Services.AddScoped<IDbRepository<BasketElement>, DbRepository<BasketElement>>();
+			builder.Services.AddScoped<IDbRepository<DiscountType>, DbRepository<DiscountType>>();
 			builder.Services.AddScoped<IDbRepository<Discount>, DbRepository<Discount>>();
 			builder.Services.AddScoped<IDbRepository<GoodCategory>, DbRepository<GoodCategory>>();
 			builder.Services.AddScoped<IDbRepository<Good>, DbRepository<Good>>();
@@ -85,9 +86,11 @@ namespace SneakerShop
 			app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=AllActions}/{id?}");
+				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+			});
 
             app.Run();
         }

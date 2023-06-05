@@ -26,7 +26,7 @@ namespace SneakerShop.Controllers
 
 		public IActionResult Sales()
 		{
-			var discounts = _DiscountsService.GetAll().Select(x => x.IdGood);
+			var discounts = _DiscountsService.GetAllDiscounts().Select(x => x.IdGood);
 			var goods = _GoodsService.GetAllGoods().Where(x => discounts.Contains(x.Id)).ToList();
 			return View(new IndexPageModel(goods));
 		}
