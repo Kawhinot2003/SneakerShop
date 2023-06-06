@@ -1,0 +1,25 @@
+﻿@using SneakerShop.Models.Entities;
+@model SneakerShop.Models.PageModels.AdminIndexPageModel
+
+<div>
+    <h3>Список заказов</h3>
+    <table>
+        <tr>
+            <td><p>Код пользователя</p></td>
+            <td><p>Статус</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var e in Model.Orders)
+        {
+            <tr>
+                <td><p>@e.IdUser</p></td>
+                <td><p>@e.Status</p></td>
+                <td><p><a href="/Admin/Home/EditOrder/@e.Id">Изменить</a></p></td>
+                <td><p><a href="/Admin/Home/DeleteOrder/@e.Id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/Admin/Home/AddOrder">Добавить</a>
+</div>

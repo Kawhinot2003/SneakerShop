@@ -1,0 +1,26 @@
+﻿@model SneakerShop.Models.Entities.Order
+@using SneakerShop.Models.Entities
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.IdOrderType, "Код типа заказа")
+            <br />
+            @Html.EditorFor(m => m.IdOrderType)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.IdUser, "Код пользователя")
+            <br />
+            @Html.EditorFor(m => m.IdUser)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Status, "Статус")
+            <br />
+            @Html.EditorFor(m => m.Status)
+        </p>
+
+        <p><input type="submit" value="Отправить" /></p>
+    </fieldset>
+}

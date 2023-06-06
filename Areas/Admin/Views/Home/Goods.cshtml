@@ -2,7 +2,7 @@
 @model SneakerShop.Models.PageModels.AdminIndexPageModel
 
 <div>
-    <h3>Список типов товаров</h3>
+    <h3>Список товаров</h3>
     <a href="/Admin/Home/AddGood">Добавить</a>
     <table>
         <tr>
@@ -15,7 +15,7 @@
         {
             <tr>
                 <td><p>@e.Name</p></td>
-                <td><img src="@e.ImageURL" style="width: 100px; height: auto"/></td>
+                <td><img src="@e.ImageURL" style="width: 250px; height: auto"/></td>
                 <td><p><a href="/Admin/Home/EditGood/@e.Id">Изменить</a></p></td>
                 <td><p><a href="/Admin/Home/DeleteGood/@e.Id">Удалить</a></p></td>
             </tr>

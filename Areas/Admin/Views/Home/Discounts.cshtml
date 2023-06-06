@@ -1,0 +1,25 @@
+﻿@using SneakerShop.Models.Entities;
+@model SneakerShop.Models.PageModels.AdminIndexPageModel
+
+<div>
+    <h3>Список скидок</h3>
+    <table>
+        <tr>
+            <td><p>Код товара</p></td>
+            <td><p>Код типа скидки</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var e in Model.Discounts)
+        {
+            <tr>
+                <td><p>@e.IdGood</p></td>
+                <td><p>@e.IdDiscountType</p></td>
+                <td><p><a href="/Admin/Home/EditDiscount/@e.Id">Изменить</a></p></td>
+                <td><p><a href="/Admin/Home/DeleteDiscount/@e.Id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/Admin/Home/AddDiscount">Добавить</a>
+</div>

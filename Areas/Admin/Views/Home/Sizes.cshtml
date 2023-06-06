@@ -1,0 +1,25 @@
+﻿@using SneakerShop.Models.Entities;
+@model SneakerShop.Models.PageModels.AdminIndexPageModel
+
+<div>
+    <h3>Список размеров</h3>
+    <table>
+        <tr>
+            <td><p>Код категории товаров</p></td>
+            <td><p>Название</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var e in Model.Sizes)
+        {
+            <tr>
+                <td><p>@e.IdGoodCategory</p></td>
+                <td><p>@e.Name</p></td>
+                <td><p><a href="/Admin/Home/EditSize/@e.Id">Изменить</a></p></td>
+                <td><p><a href="/Admin/Home/DeleteSize/@e.Id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/Admin/Home/AddSize">Добавить</a>
+</div>

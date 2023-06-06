@@ -10,11 +10,7 @@
     @Html.AntiForgeryToken()
     <fieldset>
         @Html.HiddenFor(m => m.Id);
-
-        @{
-            ApplicationContext context = new ApplicationContext();
-        }
-        <p>
+        @*<p>
             @Html.LabelFor(m => m.IdGoodCategory, "Код категории")
             <br />
             <select>
@@ -37,7 +33,7 @@
                 }
             }
             </select>
-        </p>
+        </p>*@
         <p>
             @Html.LabelFor(m => m.IdGoodCategory, "Категория")
             <br />

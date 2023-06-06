@@ -1,20 +1,40 @@
-﻿@model SneakerShop.Models.Entities.GoodCategory
+﻿@model SneakerShop.Models.Entities.Good
 
-<h2>Тип товара № @Model.Id</h2>
+<h2>Товар № @Model.Id</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <fieldset>
         @Html.HiddenFor(m => m.Id)
         <p>
+            @Html.LabelFor(m => m.IdGoodCategory, "Категория")
+            <br />
+            @Html.EditorFor(m => m.IdGoodCategory)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.IdManufacturer, "Производтель")
+            <br />
+            @Html.EditorFor(m => m.IdManufacturer)
+        </p>
+        <p>
             @Html.LabelFor(m => m.Name, "Название")
             <br />
             @Html.EditorFor(m => m.Name)
         </p>
         <p>
+            @Html.LabelFor(m => m.Price, "Цена")
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+        <p>
             @Html.LabelFor(m => m.Description, "Описание")
             <br />
             @Html.EditorFor(m => m.Description)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ImageURL, "URL фотографии")
+            <br />
+            @Html.EditorFor(m => m.ImageURL)
         </p>
         <p><input type="submit" value="Отправить" /></p>
     </fieldset>
