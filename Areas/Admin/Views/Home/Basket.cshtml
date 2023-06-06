@@ -1,0 +1,25 @@
+﻿@using SneakerShop.Models.Entities;
+@model SneakerShop.Models.PageModels.AdminIndexPageModel
+
+<div>
+    <h3>Корзина</h3>
+    <table>
+        <tr>
+            <td><p>Код товара</p></td>
+            <td><p>Код пользователя</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var e in Model.Basket)
+        {
+            <tr>
+                <td><p>@e.IdGood</p></td>
+                <td><p>@e.IdUser</p></td>
+                <td><p><a href="/Admin/Home/EditBasketElement/@e.Id">Изменить</a></p></td>
+                <td><p><a href="/Admin/Home/DeleteBasketElement/@e.Id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/Admin/Home/AddBasketElement">Добавить</a>
+</div>

@@ -21,6 +21,7 @@ namespace SneakerShop.Controllers
 		public IActionResult Index(int? searchType, string? searchParam)
 		{
 			var goods = _GoodsService.SearchGoods(searchType, searchParam);
+			goods = goods.OrderBy(x => x.Id).ToList();
 			return View(new IndexPageModel(goods));
 		}
 

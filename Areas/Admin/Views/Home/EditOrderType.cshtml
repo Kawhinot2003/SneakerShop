@@ -1,5 +1,6 @@
-﻿@model SneakerShop.Models.Entities.GoodCategory
-@using SneakerShop.Models.Entities
+﻿@model SneakerShop.Models.Entities.OrderType
+
+<h2>Размер № @Model.Id</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -10,12 +11,6 @@
             <br />
             @Html.EditorFor(m => m.Name)
         </p>
-        <p>
-            @Html.LabelFor(m => m.Description, "Описание")
-            <br />
-            @Html.EditorFor(m => m.Description)
-        </p>
-
         <p><input type="submit" value="Отправить" /></p>
     </fieldset>
 }

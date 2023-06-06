@@ -1,5 +1,6 @@
-﻿@model SneakerShop.Models.Entities.GoodCategory
-@using SneakerShop.Models.Entities
+﻿@model SneakerShop.Models.Entities.DiscountType
+
+<h2>Тип скидки № @Model.Id</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -15,7 +16,11 @@
             <br />
             @Html.EditorFor(m => m.Description)
         </p>
-
+        <p>
+            @Html.LabelFor(m => m.Percent, "Процент")
+            <br />
+            @Html.EditorFor(m => m.Percent)
+        </p>
         <p><input type="submit" value="Отправить" /></p>
     </fieldset>
 }

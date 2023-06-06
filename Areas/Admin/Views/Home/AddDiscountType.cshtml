@@ -1,4 +1,4 @@
-﻿@model SneakerShop.Models.Entities.GoodCategory
+﻿@model SneakerShop.Models.Entities.DiscountType
 @using SneakerShop.Models.Entities
 @using (Html.BeginForm())
 {
@@ -14,6 +14,11 @@
             @Html.LabelFor(m => m.Description, "Описание")
             <br />
             @Html.EditorFor(m => m.Description)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Percent, "Процент")
+            <br />
+            @Html.EditorFor(m => m.Percent)
         </p>
 
         <p><input type="submit" value="Отправить" /></p>
