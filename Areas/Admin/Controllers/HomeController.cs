@@ -30,7 +30,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return View();
 		}
 
-		#region Goods
+		#region GoodCategories
 
 		public IActionResult GoodCategories()
 		{
@@ -75,6 +75,10 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return RedirectToAction("GoodCategories", "Home");
 		}
 
+		#endregion
+
+		#region Goods
+
 		public IActionResult Goods()
 		{
 			var pageModel = new AdminIndexPageModel();
@@ -84,7 +88,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 
 		#endregion
 
-		#region Discounts
+		#region DiscountTypes
 
 		public IActionResult DiscountTypes()
 		{
@@ -92,6 +96,10 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.DiscountTypes = _DiscountsService.GetAllDiscountTypes();
 			return View(pageModel);
 		}
+
+		#endregion
+
+		#region Discounts
 
 		public IActionResult Discounts()
 		{
@@ -102,12 +110,54 @@ namespace SneakerShop.Areas.Admin.Controllers
 
 		#endregion
 
+		#region Manufacturers
+
 		public IActionResult Manufacturers()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.Manufacturers = _GoodsService.GetAllManufacturers();
 			return View(pageModel);
 		}
+
+		public IActionResult AddManufacturer()
+		{
+			return View(new Manufacturer());
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult AddManufacturer(Manufacturer manufacturer)
+		{
+			_GoodsService.AddManufacturer(manufacturer);
+			var pageModel = new AdminIndexPageModel();
+			pageModel.Manufacturers = _GoodsService.GetAllManufacturers();
+			return RedirectToAction("Manufacturers", "Home");
+		}
+
+		public IActionResult EditManufacturer(int id)
+		{
+			return View(_GoodsService.GetManufacturer(id));
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult EditManufacturer(Manufacturer manufacturer)
+		{
+			_GoodsService.EditManufacturer(manufacturer);
+			var pageModel = new AdminIndexPageModel();
+			pageModel.Manufacturers = _GoodsService.GetAllManufacturers();
+			return RedirectToAction("Manufacturers", "Home");
+		}
+
+		public IActionResult DeleteManufacturer(int id)
+		{
+			_GoodsService.DeleteManufacturer(id);
+			return RedirectToAction("Manufacturers", "Home");
+		}
+
+		#endregion
+
+		#region Sizes
 
 		public IActionResult Sizes()
 		{
@@ -116,6 +166,10 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return View(pageModel);
 		}
 
+		#endregion
+
+		#region Basket
+
 		public IActionResult Basket()
 		{
 			var pageModel = new AdminIndexPageModel();
@@ -123,7 +177,9 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return View(pageModel);
 		}
 
-		#region Orders
+		#endregion
+
+		#region OrderTypes
 
 		public IActionResult OrderTypes()
 		{
@@ -132,12 +188,20 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return View(pageModel);
 		}
 
+		#endregion
+
+		#region Orders
+
 		public IActionResult Orders()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.Orders = _OrdersService.GetAllOrders();
 			return View(pageModel);
 		}
+
+		#endregion
+
+		#region OrderedGoods
 
 		public IActionResult OrderedGoods()
 		{

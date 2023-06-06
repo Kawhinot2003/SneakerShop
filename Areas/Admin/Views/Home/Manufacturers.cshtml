@@ -1,0 +1,25 @@
+﻿@using SneakerShop.Models.Entities;
+@model SneakerShop.Models.PageModels.AdminIndexPageModel
+
+<div>
+    <h3>Список типов товаров</h3>
+    <table>
+        <tr>
+            <td><p>Название</p></td>
+            <td><p>Описание</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var e in Model.Manufacturers)
+        {
+            <tr>
+                <td><p>@e.Name</p></td>
+                <td><p>@e.Description</p></td>
+                <td><p><a href="/Admin/Home/EditManufacturer/@e.Id">Изменить</a></p></td>
+                <td><p><a href="/Admin/Home/DeleteManufacturer/@e.Id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/Admin/Home/AddManufacturer">Добавить</a>
+</div>
