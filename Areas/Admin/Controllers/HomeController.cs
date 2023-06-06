@@ -29,6 +29,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		{
 			return View();
 		}
+
 		#region Manufacturers
 
 		public IActionResult Manufacturers()
@@ -75,6 +76,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		}
 
 		#endregion
+
 		#region GoodCategories
 
 		public IActionResult GoodCategories()
@@ -121,6 +123,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		}
 
 		#endregion
+
 		#region Goods
 
 		public IActionResult Goods()
@@ -129,10 +132,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Goods = _GoodsService.GetAllGoods();
 			return View(pageModel);
 		}
+
 		public IActionResult AddGood()
 		{
 			return View(new Good());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddGood(Good good)
@@ -152,6 +157,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		{
 			return View(_GoodsService.GetGood(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditGood(Good good)
@@ -163,7 +169,9 @@ namespace SneakerShop.Areas.Admin.Controllers
 		}
 
 		#endregion
+
 		#region Discounts
+
 		public IActionResult Discounts()
 		{
 			var pageModel = new AdminIndexPageModel();
@@ -175,6 +183,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		{
 			return View(new Discount());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddDiscount(Discount discount)
@@ -184,16 +193,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Discounts = _DiscountsService.GetAllDiscounts();
 			return RedirectToAction("Discounts", "Home");
 		}
-		public IActionResult DeleteDiscount(int id)
-		{
-			_DiscountsService.DeleteDiscount(id);
-			return RedirectToAction("Discounts", "Home");
-		}
 
 		public IActionResult EditDiscount(int id)
 		{
 			return View(_DiscountsService.GetDiscount(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditDiscount(Discount discount)
@@ -203,8 +208,17 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Discounts = _DiscountsService.GetAllDiscounts();
 			return RedirectToAction("Discounts", "Home");
 		}
+
+		public IActionResult DeleteDiscount(int id)
+		{
+			_DiscountsService.DeleteDiscount(id);
+			return RedirectToAction("Discounts", "Home");
+		}
+
 		#endregion
+
 		#region DiscountTypes
+
 		public IActionResult DiscountTypes()
 		{
 			var pageModel = new AdminIndexPageModel();
@@ -216,6 +230,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 		{
 			return View(new DiscountType());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddDiscountType(DiscountType discountType)
@@ -225,16 +240,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.DiscountTypes = _DiscountsService.GetAllDiscountTypes();
 			return RedirectToAction("DiscountTypes", "Home");
 		}
-		public IActionResult DeleteDiscountType(int id)
-		{
-			_DiscountsService.DeleteDiscountType(id);
-			return RedirectToAction("DiscountTypes", "Home");
-		}
 
 		public IActionResult EditDiscountType(int id)
 		{
 			return View(_DiscountsService.GetDiscountType(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditDiscountType(DiscountType discountType)
@@ -244,18 +255,29 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.DiscountTypes = _DiscountsService.GetAllDiscountTypes();
 			return RedirectToAction("DiscountTypes", "Home");
 		}
+
+		public IActionResult DeleteDiscountType(int id)
+		{
+			_DiscountsService.DeleteDiscountType(id);
+			return RedirectToAction("DiscountTypes", "Home");
+		}
+
 		#endregion
+
 		#region Sizes
+
 		public IActionResult Sizes()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.Sizes = _SizeService.GetAll();
 			return View(pageModel);
 		}
+
 		public IActionResult AddSize()
 		{
 			return View(new Size());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddSize(Size size)
@@ -265,16 +287,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Sizes = _SizeService.GetAll();
 			return RedirectToAction("Sizes", "Home");
 		}
-		public IActionResult DeleteSize(int id)
-		{
-			_SizeService.Delete(id);
-			return RedirectToAction("Sizes", "Home");
-		}
 
 		public IActionResult EditSize(int id)
 		{
 			return View(_SizeService.Get(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditSize(Size size)
@@ -284,23 +302,49 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Sizes = _SizeService.GetAll();
 			return RedirectToAction("Sizes", "Home");
 		}
+
+		public IActionResult DeleteSize(int id)
+		{
+			_SizeService.Delete(id);
+			return RedirectToAction("Sizes", "Home");
+		}
+
 		#endregion
+
 		#region Basket
+
 		public IActionResult Basket()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.Basket = _BasketService.GetAll();
 			return View(pageModel);
 		}
+
 		public IActionResult AddBasketElement()
 		{
 			return View(new BasketElement());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddBasketElement(BasketElement basketElement)
 		{
 			_BasketService.Add(basketElement);
+			var pageModel = new AdminIndexPageModel();
+			pageModel.Basket = _BasketService.GetAll();
+			return RedirectToAction("Basket", "Home");
+		}
+
+		public IActionResult EditBasketElement(int id)
+		{
+			return View(_BasketService.Get(id));
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult EditBasketElement(BasketElement basketElement)
+		{
+			_BasketService.Edit(basketElement);
 			var pageModel = new AdminIndexPageModel();
 			pageModel.Basket = _BasketService.GetAll();
 			return RedirectToAction("Basket", "Home");
@@ -311,31 +355,22 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return RedirectToAction("Basket", "Home");
 		}
 
-		public IActionResult EditBasketElement(int id)
-		{
-			return View(_BasketService.Get(id));
-		}
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult EditBasketElement(BasketElement basketElement)
-		{
-			_BasketService.Edit(basketElement);
-			var pageModel = new AdminIndexPageModel();
-			pageModel.Basket = _BasketService.GetAll();
-			return RedirectToAction("Basket", "Home");
-		}
 		#endregion
+
 		#region OrderTypes
+
 		public IActionResult OrderTypes()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.OrderTypes = _OrdersService.GetAllOrderTypes();
 			return View(pageModel);
 		}
+
 		public IActionResult AddOrderType()
 		{
 			return View(new OrderType());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddOrderType(OrderType orderType)
@@ -345,16 +380,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.OrderTypes = _OrdersService.GetAllOrderTypes();
 			return RedirectToAction("OrderTypes", "Home");
 		}
-		public IActionResult DeleteOrderType(int id)
-		{
-			_OrdersService.DeleteOrderType(id);
-			return RedirectToAction("OrderTypes", "Home");
-		}
 
 		public IActionResult EditOrderType(int id)
 		{
 			return View(_OrdersService.GetOrderType(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditOrderType(OrderType orderType)
@@ -364,7 +395,15 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.OrderTypes = _OrdersService.GetAllOrderTypes();
 			return RedirectToAction("OrderTypes", "Home");
 		}
+
+		public IActionResult DeleteOrderType(int id)
+		{
+			_OrdersService.DeleteOrderType(id);
+			return RedirectToAction("OrderTypes", "Home");
+		}
+
 		#endregion
+
 		#region Orders
 
 		public IActionResult Orders()
@@ -373,10 +412,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Orders = _OrdersService.GetAllOrders();
 			return View(pageModel);
 		}
+
 		public IActionResult AddOrder()
 		{
 			return View(new Order());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddOrder(Order order)
@@ -386,16 +427,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Orders = _OrdersService.GetAllOrders();
 			return RedirectToAction("Orders", "Home");
 		}
-		public IActionResult DeleteOrder(int id)
-		{
-			_OrdersService.DeleteOrder(id);
-			return RedirectToAction("Orders", "Home");
-		}
 
 		public IActionResult EditOrder(int id)
 		{
 			return View(_OrdersService.GetOrder(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditOrder(Order order)
@@ -405,18 +442,29 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.Orders = _OrdersService.GetAllOrders();
 			return RedirectToAction("Orders", "Home");
 		}
+
+		public IActionResult DeleteOrder(int id)
+		{
+			_OrdersService.DeleteOrder(id);
+			return RedirectToAction("Orders", "Home");
+		}
+
 		#endregion
+
 		#region OrderedGoods
+
 		public IActionResult OrderedGoods()
 		{
 			var pageModel = new AdminIndexPageModel();
 			pageModel.OrderedGoods = _OrdersService.GetAllOrderedGoods();
 			return View(pageModel);
 		}
+
 		public IActionResult AddOrderedGood()
 		{
 			return View(new OrderedGood());
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult AddOrderedGood(OrderedGood orderedGood)
@@ -426,16 +474,12 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.OrderedGoods = _OrdersService.GetAllOrderedGoods();
 			return RedirectToAction("OrderedGoods", "Home");
 		}
-		public IActionResult DeleteOrderedGood(int id)
-		{
-			_OrdersService.DeleteOrderedGood(id);
-			return RedirectToAction("OrderedGoods", "Home");
-		}
 
 		public IActionResult EditOrderedGood(int id)
 		{
 			return View(_OrdersService.GetOrderedGood(id));
 		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult EditOrderedGood(OrderedGood orderedGood)
@@ -445,6 +489,13 @@ namespace SneakerShop.Areas.Admin.Controllers
 			pageModel.OrderedGoods = _OrdersService.GetAllOrderedGoods();
 			return RedirectToAction("OrderedGoods", "Home");
 		}
+
+		public IActionResult DeleteOrderedGood(int id)
+		{
+			_OrdersService.DeleteOrderedGood(id);
+			return RedirectToAction("OrderedGoods", "Home");
+		}
+
 		#endregion
 	}
 }
