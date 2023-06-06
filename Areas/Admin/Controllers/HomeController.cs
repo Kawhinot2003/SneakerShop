@@ -30,7 +30,7 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return View();
 		}
 
-		#region Goods
+		#region GoodCategories
 
 		public IActionResult GoodCategories()
 		{
@@ -75,6 +75,9 @@ namespace SneakerShop.Areas.Admin.Controllers
 			return RedirectToAction("GoodCategories", "Home");
 		}
 
+		#endregion
+		#region Goods
+
 		public IActionResult Goods()
 		{
 			var pageModel = new AdminIndexPageModel();
@@ -83,7 +86,20 @@ namespace SneakerShop.Areas.Admin.Controllers
 		}
 		public IActionResult AddGood()
 		{
-			return View();
+			var pageModel = new AdminIndexPageModel();
+			pageModel.GoodCategories = _GoodsService.GetAllGoodCategories();
+			pageModel.Manufacturers = _GoodsService.GetAllManufacturers();
+			var tuple = new Tuple<AdminIndexPageModel, Good>(pageModel, new SneakerShop.Models.Entities.Good());
+			return View(new Good());
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult AddGood(Good good)
+		{
+			_GoodsService.AddGood(good);
+			var pageModel = new AdminIndexPageModel();
+			pageModel.Goods = _GoodsService.GetAllGoods();
+			return RedirectToAction("Goods", "Home");
 		}
 		public IActionResult DeleteGood()
 		{
@@ -95,7 +111,6 @@ namespace SneakerShop.Areas.Admin.Controllers
 		}
 
 		#endregion
-
 		#region Discounts
 
 		public IActionResult DiscountTypes()

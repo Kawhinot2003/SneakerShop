@@ -1,5 +1,5 @@
 ﻿@model SneakerShop.Models.Entities.GoodCategory
-
+@using SneakerShop.Models.Entities
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -15,6 +15,7 @@
             <br />
             @Html.EditorFor(m => m.Description)
         </p>
+
         <p><input type="submit" value="Отправить" /></p>
     </fieldset>
 }
