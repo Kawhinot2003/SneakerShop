@@ -8,14 +8,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <body class="pb-[50px]">
-    <div class="text-[60px] leading-none text-center mt-[78px]">Скидки</div>
-    <div class="mt-[174px] flex flex-col gap-[248px] max-w-[1500px] mx-auto text-[40px]">
-        <div class="flex gap-[560px]">
-            <div class="flex flex-col justify-center items-center">
+    <div class="mt-[174px] flex flex-col">
+        <div class="flex flex-col gap-[99px] mt-[67px]">
+            <div class="flex flex-row flex-wrap gap-[10px] max-w-[calc(100% - 700px)] items-center justify-center">
                 @foreach (Good g in goods)
                 {
-                    <div><a href="/GoodInfo/Index/?goodId=@g.Id"><img src="@g.ImageURL" alt=""></a></div>
-                    <div>@g.Name</div>
+                    <div class="w-[49%] mt-[40px] flex flex-col gap-1 items-center justify-center flex-wrap">
+                        <img class="w-[150px]" src="/images/icons/sale.svg" />
+                        <div class="max-w-[800px]"><a href="/GoodInfo/Index/?goodId=@g.Id"><img src="@g.ImageURL" alt=""></a></div>
+                        <div class="text-[40px] leading-none text-center mt-[20px]">@g.Name</div>
+                    </div>
                 }
             </div>
         </div>

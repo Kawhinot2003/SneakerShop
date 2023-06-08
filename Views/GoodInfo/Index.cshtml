@@ -8,8 +8,9 @@
 <html lang="en">
 <body class="pb-[50px]">
     <div class="flex px-11 mt-[160px] gap-[80px]">
-        <div class="max-w-[990px] w-full">
+        <div class="flex flex-col gap-3 max-w-[990px] w-full">
             <img src="@good.ImageURL" alt="">
+            <div>@good.Description</div>
         </div>
         <div class="flex flex-col">
             <div class="text-[48px] leading-none">@good.Name</div>
@@ -17,7 +18,7 @@
             <div class="my-[44px] grid grid-cols-4 mx-auto justify-center gap-[44px] text-[20px] leading-none">
                 @foreach (var size in Model.Sizes)
                 {
-                    <a href="/GoodInfo/MakeOrder/?goodId=@good.Id&choosedSizeId=@size.Id" class="max-w-[100px] px-[11px] py-[29px] border border-black flex justify-center items-center">@size.Name</a>
+                    <a href="/GoodInfo/MakeOrder/?goodId=@good.Id&choosedSizeId=@size.Id" class="max-w-[100px] px-[11px] py-[29px] border border-black flex justify-center items-center text-center">@size.Name</a>
                 }
             </div>
         </div>
